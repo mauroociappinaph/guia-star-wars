@@ -1,9 +1,13 @@
 import Buscador from "./Buscador";
 
-export default function hero() {
+export default function Hero() {
   return (
-    <div className="flex justify-center min-h-500 items-center ">
-        <Buscador />
-    </div>
-  )
+    <section className="text-gray-600 body-font">
+      <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+        <div className="text-center lg:w-2/3 w-full">
+          <Buscador />
+        </div>
+      </div>
+    </section>
+  );
 }
