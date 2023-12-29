@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
+import { getAllCharacters } from "../utils/api";
 
 export default function Card() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-const fetchData = async () => {
-  try {
-    const url = "https://swapi.dev/api/people";
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Network response was not ok");
-    const responseData = await response.json();
-    setData(responseData);
-  } catch (error) {
-    console.error("An error occurred:", error);
-  } finally {
-    setLoading(false);
-  }
-};
+
 
   useEffect(() => {
-    fetchData();
+    const fetchDataFromApi = async () => {
+      try {
+        const responseData = await getAllCharacters();
+        setData(responseData);
+      } catch (error) {
+        // Handle error if needed
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDataFromApi();
   }, []);
 
   if (loading) {
